@@ -1,10 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { gsap } from 'gsap';
-	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+	import { browser } from '$app/environment';
 	import { hero } from '$lib/data/siteData';
-
-	gsap.registerPlugin(ScrollTrigger);
 
 	let section: HTMLElement;
 	let titleLine1: HTMLElement;
@@ -35,7 +32,14 @@
 		typeTimeout = setTimeout(typewriter, isDeleting ? 35 : 75);
 	}
 
-	onMount(() => {
+	onMount(async () => {
+		if (!browser) return;
+
+		// ✅ Dynamic import — aman dari SSR
+		const { gsap } = await import('gsap');
+		const { default: ScrollTrigger } = await import('gsap/dist/ScrollTrigger');
+		gsap.registerPlugin(ScrollTrigger);
+
 		const letters1 = titleLine1.querySelectorAll('.letter');
 		const letters2 = titleLine2.querySelectorAll('.letter');
 
@@ -55,9 +59,8 @@
 		  .from(subtitleEl, {
 				y: 24, opacity: 0,
 				duration: 0.7, ease: 'power3.out',
-		  }, '-=0.5')
+		  }, '-=0.5');
 
-		// Subtle parallax
 		gsap.to(section, {
 			scrollTrigger: {
 				trigger: section,
@@ -98,7 +101,6 @@
 				bind:this={titleLine1}
 				class="font-black leading-[0.88] tracking-tight select-none"
 				style="font-size: clamp(2.8rem, 8.5vw, 7.5rem); color: #F5F5F5;"
-
 			>
 				{#each hero.firstName.split('') as char}
 					<span class="letter inline-block">{char}</span>
@@ -117,7 +119,6 @@
 					text-shadow: 0 0 60px rgba(180,255,0,0.35), 0 0 120px rgba(180,255,0,0.12);
 					letter-spacing: -0.02em;
 				"
-
 			>
 				{#each hero.lastName.split('') as char}
 					<span class="letter inline-block">{char}</span>
@@ -145,7 +146,6 @@
 				{displayedRole}<span class="cursor inline-block w-0.5 h-[1.1em] bg-[#B4FF00] ml-0.5 align-middle"></span>
 			</p>
 		</div>
-
 
 	</div>
 
