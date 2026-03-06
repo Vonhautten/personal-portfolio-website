@@ -157,7 +157,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="https://instagram.com/zufarrasyid" target="_blank" rel="noopener noreferrer" class="text-[#9CA3AF] hover:text-[#8FFF00] transition-colors">
+									<a href="https://www.instagram.com/jupjupar/" target="_blank" rel="noopener noreferrer" class="text-[#9CA3AF] hover:text-[#8FFF00] transition-colors">
 										Instagram
 									</a>
 								</li>
