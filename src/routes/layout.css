@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-neon: #b4ff00;
+	--color-darkbg: #3e3e3e;
+}
+
+body {
+	cursor: none;
+	background-color: #050505;
+}
+
+/* ── Hide scrollbar (semua browser) tapi tetap bisa scroll ── */
+* {
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE / Edge lama */
+}
+*::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera */
+}
+
+
+@font-face {
+    font-family: 'Mozes Regular VF';
+    src: url('/fonts/mozes-regular-vf.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
